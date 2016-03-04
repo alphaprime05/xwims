@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<!--<persistence-unit name="bdd_xwims_PU" transaction-type="RESOURCE_LOCAL"> 
+		<provider> org.apache.openjpa.persistence.PersistenceProviderImpl </provider> 
+		<class>entity.AuthorizedDomainName</class> <class>entity.Category</class> 
+		<class>entity.CategorySon</class> <class>entity.CategoryTranslation</class> 
+		<class>entity.Exercise</class> <class>entity.ExerciseAuthor</class> <class>entity.ExerciseComment</class> 
+		<class>entity.ExerciseIsWrong</class> <class>entity.ExercisesCategoryVote</class> 
+		<class>entity.ExercisesKeywordsVote</class> <class>entity.ExercisesLevelsVote</class> 
+		<class>entity.Keyword</class> <class>entity.KeywordTranslation</class> <class>entity.Level</class> 
+		<class>entity.LevelsSon</class> <class>entity.LevelsTranslation</class> <class>entity.NextCategoryForExercise</class> 
+		<class>entity.PreviousCategoryForExercise</class> <class>entity.UserSelectedCategory</class> 
+		<class>entity.Worksheet</class> <class>entity.WorksheetExercis</class> <class>entity.User</class> 
+		<properties> <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" 
+		/> <property name="javax.persistence.jdbc.user" value="xwims" /> <property 
+		name="javax.persistence.jdbc.password" value="xwims" /> <property name="javax.persistence.jdbc.url" 
+		value="jdbc:postgresql://localhost:5432/xwims" /> <property name="hibernate.dialect" 
+		value="org.hibernate.dialect.HSQLDialect" /> <property name="hibernate.max_fetch_depth" 
+		value="3" /> </properties> </persistence-unit> -->
+	<persistence-unit name="bdd_xwims_PU" transaction-type="JTA">
+		<jta-data-source>java:/xwimsDS</jta-data-source>
+
+		
+		<properties>
+			<property name="hibernate.search.default.directory_provider" value="filesystem" />
+			<property name="hibernate.search.default.indexBase" value="/home/xwims/Documents/lucene/indexes" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.enable_lazy_load_no_trans" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

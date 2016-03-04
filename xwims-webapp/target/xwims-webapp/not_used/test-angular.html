@@ -1,0 +1,75 @@
+<!doctype html>
+<html ng-app="ui.bootstrap.demo">
+  <head>
+    
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+
+<style>
+  .typeahead-demo .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .message {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+</style>
+
+
+      
+      
+
+<div ng-controller="ModalDemoCtrl">
+    <script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Ajoutez une catégorie à l'exercice</h3>
+        </div>
+        <div class="modal-body container-fluid typeahead-demo">
+            
+
+    <pre>Model: {{asyncSelected}}</pre>
+    <input type="text" ng-model="asyncSelected" ng-model-options="modelOptions" placeholder="Locations loaded via $http" uib-typeahead="cat for cat in getCategories($viewValue) " typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+    <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+    <div ng-show="noResults">
+      <i class="glyphicon glyphicon-remove"></i> No Results Found
+    </div>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+            <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        </div>
+    </script>
+
+    <button type="button" class="btn btn-default" ng-click="openCategoryModal()">Open me!</button>
+</div>
+
+
+      
+      
+      <script src="js/common.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>
+    <script src="controllerTest.js"></script>
+  </body>
+</html>

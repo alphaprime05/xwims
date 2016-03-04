@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr" ng-app="myApp">
+    <head ng-include="'includes/head.html'"> 
+        
+	    <title>Administration - xWims</title>
+        <link href="css/admin.css" rel="stylesheet">
+	
+    </head>
+    
+    <body>
+         <nav class="navigation" ng-include="'includes/nav.html'"></nav>
+        
+        <div id="wrap">
+            <div class="container">
+          
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <a href="liste-membres.html">
+                            <div class="btn-menu-admin">
+
+                                <p>Tous les membres</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <a href="newMembers.html">
+                            <div class="btn-menu-admin">
+
+                                <p>Nouveaux inscrits</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <a href="incidents.html">
+                            <div class="btn-menu-admin">
+
+                                <p>Incidents</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+
+                        <a href="domaines.html">
+                            <div class="btn-menu-admin">
+
+                                <p>Domaines</p>
+                            </div>
+                        </a>
+                    </div>    
+          
+                </div>
+            </div>
+        </div>
+        
+       
+        <footer id="footer" ng-include="'includes/footer.html'"></footer>
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/autocomplete/auto-complete.js"></script>
+        <script type="text/javascript" src="js/angular/controller.js"></script>   
+        
+        
+    </body>
+</html>

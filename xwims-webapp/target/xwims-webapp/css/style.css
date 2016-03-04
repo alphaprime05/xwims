@@ -1,0 +1,173 @@
+
+html,
+body
+{
+  height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+    font: 12px/18px RooneySans-Medium,Calibri,"helvetica neue",Arial, Verdana, sans-serif
+    margin:0;
+    padding:0;
+}  
+
+h1 { font-size: 24px; font-weight: bold; line-height: 36px; margin-bottom: 18px; } 
+h2 { font-size: 16px; font-weight: bold; line-height: 18px; margin-bottom: 18px; } 
+h3 { font-size: 1em; font-weight: bold; line-height: 18px; }
+p, .wording{
+    font: 12px/18px "Segoe UI",Calibri,"helvetica neue",Arial, Verdana, sans-serif
+    
+}
+button, div{
+    font: 16px Calibri,"helvetica neue",Arial, Verdana, sans-serif
+    
+}
+a,
+a:focus,
+a:hover {
+  text-decoration: none;
+  color:black;
+}
+
+
+
+ul{
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+
+.navigation{
+  height:12rem;
+  background-color: #333;
+}
+
+.navigation #link-nav{
+	float:right;
+	margin-right: 100px;
+}
+
+
+.navigation a{
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.5);
+}
+.navigation  li {
+	margin-top: 40px;
+  /*display: inline-block;*/
+}
+.navigation  li + li {
+  margin-left: 20px;
+}
+.navigation  li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 18px;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.navigation  li > a:hover,
+.navigation  li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.navigation  .active > a,
+.navigation  .active > a:hover,
+.navigation  .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+#logoNav{
+	margin:20px;
+}
+
+/* Wrapper for page content to push down footer */
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 50px;
+  background-color: #F5F5F5;
+  padding-bottom: 100px;
+}
+
+#footer {
+  height: 60px;
+  background-color: #333;
+}
+
+
+.btn:hover {
+  color: #333;
+  background-color: #1DACC1;
+}
+.btn-lg {
+  padding: 10px 20px;
+  font-weight: bold;
+}
+
+.blue-background{
+  background-color: #19535C;
+  color:white;
+}
+
+
+.modal-body{
+  padding-bottom: 50px;
+}
+
+#addToPaperExo{
+    float:right;
+}
+
+h1{
+    margin-bottom: 50px;
+}
+
+
+table.breakdown thead{
+    background-color: #8d0909;
+    color:white;
+}
+
+.flags{
+    text-align: center;
+    margin-top: 15px;
+}
+
+
+.typeahead-demo .custom-popup-wrapper {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    background-color: #f9f9f9;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .message {
+    padding: 10px 20px;
+    border-bottom: 1px solid #ddd;
+    color: #868686;
+  }
+
+  .typeahead-demo .custom-popup-wrapper > .dropdown-menu {
+    position: static;
+    float: none;
+    display: block;
+    min-width: 160px;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+
+.scoreAndPop{
+    margin:20px;
+}
+
+#linkInscription{
+	color:black;
+}

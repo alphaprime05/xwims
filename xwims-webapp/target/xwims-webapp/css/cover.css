@@ -1,0 +1,44 @@
+
+
+.navigation #link-nav-center{
+  text-align: center;
+}
+
+
+#wrap{
+  background-color: #333;
+	
+}
+.cover-wrap{
+  background-color: #333;
+  text-align: center;
+}
+
+.cover-wrap p{
+	color : white;
+	margin:30px;
+}
+
+.cover-wrap .text-center{
+  padding: 0 20px;
+  margin-top:100px;
+
+}
+
+
+#logo-div-cover{
+	margin:30px;
+}
+
+#logo-cover{
+	display: block;
+  	margin:auto;
+
+}
+
+.btn-home{
+    background-color: white;
+    color:#333333;
+}
+
+

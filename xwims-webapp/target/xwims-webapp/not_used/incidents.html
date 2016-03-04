@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="fr" ng-app="myApp">
+    <head ng-include="'includes/head.html'"> 
+        
+	    <title>Administration - xWims</title>
+        <link href="css/admin.css" rel="stylesheet">
+	
+    </head>
+    
+    <body>
+        <nav class="navigation" ng-include="'includes/nav.html'"></nav>
+        
+        <div id="wrap">
+            <div class="container">
+              <table class="table breakdown">
+                <thead>
+                    <tr>
+                    <th>Id exercice</th>
+                    <th>Titre de l'exercice</th>
+                    <th>Utilisateur</th>
+                    <th>Date</th>
+                    <th>Commentaire</th>
+                    </tr>
+                </thead>
+                <tbody>
+	<tr>
+        <td>2356</td>
+        <td>Addition d'entiers</td>
+	<td >Dupond Henri</td>
+	<td >13/12/2015</td>
+	<td >Cet exercice a pour solution -4 et non -5</td>
+                        </tr>
+                        
+	<tr>
+        <td>2356</td>
+        <td>Addition d'entiers</td>
+	<td >Chirac Jacky</td>
+	<td >09/12/2015</td>
+	<td >Les solutions de cet exercice sont -4 et 6 et non pas -5 et 6</td>
+                        </tr>
+                        <tr>
+        <td>1234</td>
+        <td>Matrice</td>
+	<td >Chirac Jacky</td>
+	<td >09/06/2015</td>
+	<td >La matrice ne peut pas être résolue</td>
+                        </tr>
+                </tbody>
+            </table>
+            
+      </div>
+      
+      
+      </div>
+     
+        <footer id="footer" ng-include="'includes/footer.html'"></footer>
+        
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/autocomplete/auto-complete.js"></script>
+        <script type="text/javascript" src="js/angular/controller.js"></script> 
+
+    </body>
+</html>
+
+
+

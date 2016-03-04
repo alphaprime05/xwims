@@ -1,0 +1,171 @@
+<!DOCTYPE html  [
+    <!ENTITY nbsp "&#160;">
+    <!ENTITY times "&#215;"> 
+    <!ENTITY eacute "&#233;"> 
+    <!ENTITY egrave "&#232;"> 
+]>
+<ui:composition template="/WEB-INF/templates/BasicTemplate.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	<ui:define name="head">
+	
+	    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	    <meta name="description" content=""/>
+	    <meta name="author" content="" />
+	    <link rel="icon" href="../../favicon.ico"/>	    
+	    <meta charset="utf-8" />
+	    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1" />
+	
+	    <title>Administration - xWims</title>
+	
+	    <!-- Bootstrap core CSS -->
+	  	<link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet"/>  
+	    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css' />
+	    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css' />
+	
+			<h:outputStylesheet library="lib" name="bootstrap/css/bootstrap.min.css" />
+		<h:outputStylesheet library="css" name="style.css" />
+		<h:outputStylesheet library="css" name="checkbox.css" />
+		<h:outputStylesheet library="lib" name="autocomplete/auto-complete.css" />
+		<h:outputStylesheet library="css" name="admin.css" />
+		
+		<h:outputStylesheet library="lib" name="flat-bootstrap/lib/css/font-awesome.min.css" />
+		<h:outputStylesheet library="lib" name="flat-bootstrap/lib/css/animate.min.css" />
+		<h:outputStylesheet library="lib" name="flat-bootstrap/lib/css/bootstrap3/bootstrap-switch.min.css" />
+		<h:outputStylesheet library="lib" name="flat-bootstrap/lib/css/checkbox3.min.css" />
+		<h:outputStylesheet library="lib" name="flat-bootstrap/lib/css/jquery.dataTables.min.css" />
+		<h:outputStylesheet library="lib" name="flat-bootstrap/lib/css/dataTables.bootstrap.css" />
+		<h:outputStylesheet library="lib" name="flat-bootstrap/lib/css/select2.min.css" />
+		<h:outputStylesheet library="lib" name="flat-bootstrap/css/style.css" />
+		<h:outputStylesheet library="lib" name="flat-bootstrap/css/themes.css" />
+	</ui:define>
+
+
+	<ui:define name="content">
+
+      <div id="wrap">
+        <div class="container">
+          
+            <div class="row">
+                <a href="#" data-toggle="modal" data-target="#addDomain"><button type="submit" class="btn blue-background">Ajouter un nom de domaine</button></a>
+            </div>
+ <div class="row searchZone">
+            <table class="table ">
+            <thead>
+                <tr>
+                <th>Nom du domaine</th>
+                <th>Date d'ajout</th>
+                <th>Commentaires</th>
+                <th></th>
+                </tr>
+                </thead>
+                	<tbody>
+	<tr>
+        <td >u-pem.fr</td>
+        <td >13/12/2015</td>
+        <td >Domaine de l'u-pem</td>
+        <td> <a href="" ><h:graphicImage library="img" name="trash.png" width="30px" height="30px" alt="delete" /></a></td>
+    </tr>
+    <tr>
+        <td >univ-mlv.fr</td>
+        <td >18/06/2015</td>
+        <td >Ex Domaine de l'u-pem</td>
+        <td> <a href="" ><h:graphicImage library="img" name="trash.png" width="30px" height="30px" alt="delete" /></a></td>
+    </tr>
+    <tr>
+        <td >reims-univ.fr</td>
+        <td >13/11/2014</td>
+        <td >Domaine de luniv de reims</td>
+        <td> <a href="" ><h:graphicImage library="img" name="trash.png" width="30px" height="30px" alt="delete" /></a></td>
+    </tr>
+                </tbody>
+            </table>
+      </div>
+      <nav>
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&amp;laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="true">&amp;raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+ 
+      
+      </div>
+      </div>
+
+
+
+      <!-- Modal -->
+    <div class="modal fade" id="addDomain" tabindex="-1" role="dialog" aria-labelledby="addDomainModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" >Ajouter un nom de domaine</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+                <div class="form-group">
+      
+        <label for="inputEmail3" class="col-sm-offset-2 col-sm-2 control-label">Email</label>
+        <div class="col-sm-5">
+          <input type="email" class="form-control" id="inputEmail3" placeholder="Email" />
+        </div>
+      </div>
+      <div class="form-group">
+      
+        <div class="col-sm-9">
+        <textarea rows="20" cols="60" style="resize:none" /></div>
+      </div>
+      
+      
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-9">
+          <button type="submit" class="btn blue-background" id="add_btn">Ajouter</button>
+        </div>
+      </div>
+    </form>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+      
+
+
+      <h:outputScript library="lib" name="flat-bootstrap/js/lib/bootstrap-switch.min.js"/>
+     <h:outputScript library="lib" name="flat-bootstrap/js/lib/jquery.matchHeight-min.js"/>
+     <h:outputScript library="lib" name="flat-bootstrap/js/lib/jquery.dataTables.min.js"/>
+     <h:outputScript library="lib" name="flat-bootstrap/js/lib/dataTables.bootstrap.min.js"/>
+     <h:outputScript library="lib" name="flat-bootstrap/js/lib/select2.full.min.js"/>
+     <h:outputScript library="lib" name="flat-bootstrap/js/lib/ace/ace.js"/>
+     <h:outputScript library="lib" name="flat-bootstrap/js/lib/ace/mode-html.js"/>
+     <h:outputScript library="lib" name="flat-bootstrap/js/lib/ace/theme-github.js"/>
+     <!-- Javascript -->
+     <h:outputScript library="lib" name="flat-bootstrap/js/app.js"/>
+     <h:outputScript library="lib" name="flat-bootstrap/js/index.js"/>
+     
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<h:outputScript library="lib" name="bootstrap/js/bootstrap.min.js" />
+      
+      <h:outputScript library="lib" name="autocomplete/auto-complete.js"/>
+  </ui:define>
+</ui:composition>
+
+
+
+
+
+

@@ -1,0 +1,172 @@
+                                                                                <!DOCTYPE html>
+<html lang="fr" ng-app="myApp">
+
+<head>
+    <title>Ma feuille d'exercise</title>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="../../favicon.ico" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css' />
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- CSS App -->
+    <!-- Custom styles for this template -->
+    <link href="css/recherche.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/checkbox.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+</head>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+
+<body>
+    <nav class="navigation"  ng-controller="ConnectionCtrl">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+			<img src="img/logo1.png" alt="xWims" id="logoNav" width="198px" height="64px" />
+		    </div>
+
+		    <div id="link-nav" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+			    <li><a href="index.html">Accueil</a></li>
+			    <li ><a href="recherche.html">Recherche</a></li>
+			    <li class="active"><a href="worksheet.html">Ma feuille d'exercices</a></li>
+			    <li><a href="profil.html" ng-if="connected">Mon profil</a></li>
+			    <li ><a href="#" data-toggle="modal"  data-target="#connexion" ng-if="!connected">Se connecter</a></li>
+			</ul>
+		    </div>
+		</div>
+        <div ng-include="'includes/modal_connection.html'"></div>
+	</nav>
+    
+    <div id="wrap">
+        <div class="container" ng-controller="WorksheetCtrl">
+            <div class="row zone">
+                <div class="col-sm-8 col-sm-offset-2">
+                    <button type="submit" class="btn blue-background" ng-click="saveWorksheet()" ng-if="!isEmpty(worksheet.exercise) && connected">Enregistrer</button>
+                    <button type="submit" class="btn blue-background" ng-click="clearWorksheet()" ng-if="!isEmpty(worksheet.exercises)">Créer une nouvelle feuille</button>
+                </div>
+            </div>
+
+            <div class="alert alert-success alert-dismissable" style="display: none;">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{messageInfo}}
+            </div>
+
+            <div class="row zone">
+                <div class="col-sm-8 col-sm-offset-2">
+                    Titre :
+                    <input type="text" value="{{worksheet.title}}" ng-model="worksheet.title" placeholder="Titre de ma feuille d'exercices" class="form-control" required />
+                </div>
+            </div>
+            <div class="row zone">
+                <div class="col-sm-10 col-sm-offset-1">
+                    Description :
+                    <textarea class="form-control" rows="4" placeholder="Description" ng-model="worksheet.description" style="resize:none">{{worksheet.description}}</textarea>
+                </div>
+            </div>
+
+            <button id="collapseAll" class="btn blue-background" ng-if="!isEmpty(worksheet.exercises)">Tout ouvrir</button>
+            <!--button class="btn blue-background" ng-click="showList()">dhow</button-->
+
+            <ul id="sortable" sortable>
+                <li class="" ng-repeat="ex in worksheet.exercises" id="{{ex.id}}">
+                    <div class="row zone ">
+                        <div class="zone-header cursor"><span  ng-click="deleteFromWorksheet(ex.id)" alt="supprimer commentaire" class=" glyphicon glyphicon-remove cursor pull-right" height="15px" width="15px" ></span>
+                            <span class="glyphicon glyphicon-chevron-down cursor" type="button" aria-hidden="true" aria-expanded="false" data-toggle="collapse" data-target="#calculCollapse{{ $index + 1 }}"></span> {{ex.wimsTitle}} &nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src="img/view.png" alt="5" height="20px" width="20px" />&nbsp;{{ex.popularity}}&nbsp;&nbsp;&nbsp;
+                                <span ng-repeat="hat in ex.hats track by $index">
+                                    <img src="img/chapeau{{hat}}.png" alt="5" height="25px" width="20px"/>
+                                    </span>&nbsp;&nbsp;&nbsp;
+<span style="font-size:0.7em;font-style:italic;color:grey;">{{ex.wimeAuthorEmail}}</span>
+                        </div>
+                        <div class="col-sm-12 zone-body">
+                            <div class="col-sm-7">
+                                <div class="collapse" id="calculCollapse{{ $index + 1 }}">
+                                    <iframe src="{{ex.viewUrl | trustAsResourceUrl}}" height="400px" width="1000px"></iframe>
+                                </div>
+                                <!--input type="number" name="poids" /> Point
+                                <select name="nb">
+                                    <option value="ten">10</option>
+                                    <option value="twenty">20</option>
+                                </select-->
+                            </div>
+
+
+
+                            <div class="col-sm-5">
+                                
+                               
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <button type="submit" ng-click="generateWorksheet()" class="btn blue-background" ng-if="!isEmpty(worksheet.exercises)">Générer ma feuille</button>
+
+        </div>
+    </div>
+    <div ng-include="'includes/modal_connection.html'"></div>
+    <footer id="footer" ng-include="'includes/footer.html'"></footer>
+    <script src="js/common.js"></script>
+    
+        <script>
+            try {
+                console.log(window.sessionStorage);
+            }
+            catch(err) {
+                alert("Votre navigateur ne supporte pas le webStorage.\n Vous ne pouvez donc pas utiliser l'application correctement.\n Merci d'utiliser un des navigateurs suivants : Chrome 4, Firefox 3.5, Internet Explorer 8, Safari 4 ou Opera 11.5");
+            } 
+
+        </script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular/controllerWorksheet.js"></script>
+    <script type="text/javascript" src="js/angular/controllerConnection.js"></script>
+    <script type="text/javascript">
+        $(function() {
+
+            $("#sortable").sortable({
+                revert: true
+            });
+            $("#draggable").draggable({
+                connectToSortable: "#sortable",
+                helper: "clone",
+                revert: "invalid"
+            });
+            $("ul, li").disableSelection();
+
+
+            $("#collapseAll").click(function() {
+                if ($(this).attr("id") == "collapseAll") {
+                    $(".collapse").each(function() {
+                        $(this).collapse('show');
+                    });
+                    $(this).attr("id", "uncollapseAll");
+                    $(this).text("Tout refermer");
+                } else {
+                    $(".collapse").each(function() {
+                        $(this).collapse('hide');
+                    });
+                    $(this).attr("id", "collapseAll");
+                    $(this).text("Tout ouvrir");
+                }
+            });
+
+
+        });
+
+    </script>
+</body>
+
+</html>

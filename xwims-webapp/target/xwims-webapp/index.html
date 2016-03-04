@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="fr" ng-app="myApp">
+
+<head>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="../../favicon.ico" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css' />
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/style.css" rel="stylesheet">
+    <title>xWims</title>
+    <link href="css/cover.css" rel="stylesheet">
+    <link href="css/recherche.css" rel="stylesheet">
+
+</head>
+
+<body ng-controller="ConnectionCtrl">
+   <nav class="navigation"  ng-controller="ConnectionCtrl">
+		<div class="container-fluid">
+
+		    <div id="link-nav" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+			    <li class="active"><a href="index.html">Accueil</a></li>
+			    <li ><a href="recherche.html">Recherche</a></li>
+			    <li><a href="worksheet.html">Ma feuille d'exercices</a></li>
+			    <li><a href="profil.html" ng-if="connected">Mon profil</a></li>
+			    <li ><a href="#" data-toggle="modal"  data-target="#connexion" ng-if="!connected">Se connecter</a></li>
+			</ul>
+		    </div>
+		</div>
+        <div ng-include="'includes/modal_connection.html'"></div>
+	</nav>
+
+
+    <div id="wrap" class="cover-wrap">
+        <div class="container">
+            <div class="text-center">
+                <img src="img/logo1.png" alt="xWims" id="logo-cover" />
+                <p class="lead">Vous voulez créer une feuille d'exercices rapidement ? xWims est fait pour vous !
+                    <br />Ici vous pouvez rechercher vos exercices simplement et obtenir votre feuille en quelques minutes.</p>
+                <p class="lead">
+                    <a href="recherche.html" class="btn btn-lg btn-home">Rechercher des exercices</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer id="footer" ng-include="'includes/footer.html'"></footer>
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="connexion" tabindex="-1" role="dialog" aria-labelledby="connexionModalLabel" >
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">CONNEXION</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" ng-submit="connection()">
+                        <div class="form-group">
+
+                            <label for="inputEmail3" class="col-sm-offset-2 col-sm-2 control-label">Email</label>
+                            <div class="col-sm-5">
+                                <input type="text" ng-model="user.email.text" ng-model-options="{ updateOn: 'blur' }" class="form-control" id="inputEmail3" placeholder="Email">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-offset-1 col-sm-3 control-label">Mot de passe</label>
+                            <div class="col-sm-5">
+                                <input type="password" class="form-control" ng-model="user.password" ng-model-options="{ updateOn: 'blur' }" id="inputPassword3" placeholder="Mot de passe">
+                            </div>
+                        </div>
+                        <!--div class="form-group">
+                            <div class="col-sm-offset-4 col-sm-9">
+                                <div class="checkbox">
+                                    <label for="remember">
+                                        <input type="checkbox" name="remember" id="remember" value="checkone" ng-model="checkboxRememberMe">
+                                        <i></i> <span>Se souvenir de moi</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div-->
+                        <div class="form-group">
+                            <div class="col-sm-offset-5 col-sm-9">
+                                <br/>
+                                <button type="submit" class="btn blue-background" id="connect">Se connecter</button>
+                            </div>
+                        </div>
+                    </form>
+                    <p class="col-sm-offset-4 col-sm-9">Pas encore inscrit ? <a href="inscription.html">Cliquez-ici</a></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/common.js"></script>
+    <script type="text/javascript">
+    
+var myApp = angular.module('myApp', ['ngCookies']).config(function ($httpProvider) {
+    delete $httpProvider.defaults.headers.common['X-Requested-With']; // on active le cross domain
+});
+    </script>
+    <script type="text/javascript" src="js/angular/controllerConnection.js"></script>
+
+
+</body>
+
+</html>

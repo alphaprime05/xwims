@@ -1,0 +1,152 @@
+.searchZone{
+    margin-left:-200px;
+    margin-right:-200px;
+    padding:0;
+}
+
+.searchInputZone{
+
+  	font-size : 2rem;
+}
+
+.keywords{
+	margin-top:20px;
+}
+
+.keywords button{
+	margin-bottom: 10px;
+
+}
+
+.levels{
+	margin-top:20px;
+}
+
+.levels button{
+	margin-bottom: 10px;
+
+}
+
+#btnInInputMath{
+	position:absolute;
+	top:206px;
+	left:225px;
+	height:30px;
+	
+}
+
+#btnInInputLic{
+	position:absolute;
+	top:201px;
+	left:340px;
+	height:30px;
+	
+}
+
+.zone{
+  	border-radius: 3px;
+	margin-top:20px;
+    margin-bottom:10px;
+}
+.zone-header{
+	border-bottom: 1px solid #E4E4E4;
+	background-color: #19535C;
+	margin:0;
+	/*font-family: FontAwesome;*/
+	font-size: 2.5rem;
+  	border-radius: 3px 3px 0 0;
+  	color:white;
+  	padding:10px;
+}
+.zone-body{
+  	background-color: #FFF;
+	font-size: 1.4rem;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    border: 0px solid #E4E4E4;
+    padding:20px;
+
+}
+.list{
+	list-style: none;
+}
+.list > li{
+	border-bottom: 1px dotted #EEE;
+    padding: 8px;
+}
+
+.wording{
+	font-size: 1.4rem;
+	padding:2rem;
+}
+
+#importFeuilleExo{
+	width :40px;
+}
+
+.badge{
+	margin-left: 10px;
+}
+
+.well{
+	color:black;
+}
+
+
+
+.cursor{
+	cursor: pointer;
+}
+
+.tabs{
+	margin-top: 30px;
+}
+
+
+.addPaperButton{
+	float:right;
+}
+
+.addedPaperButton{
+    float:right;
+    
+    opacity: 0.4;
+    filter: alpha(opacity=40);
+}
+
+.preview{
+    color:#847f7f;
+}
+
+.codeSource{
+    padding:20px 50px 20px 50px ;
+}
+
+.btn-category{
+  background-color: #19535C;
+    color:white;
+}
+
+.btn-level{
+    background-color: #1ABC9C;
+    
+}
+
+
+.selectSort{
+    margin-top:10px;
+    padding:0;
+}
+
+.authorEmail{
+    font-size:0.9em;
+    color : #ABB1B3;
+    font-style:italic;
+    float:right;
+}
+
+.categorySearched{
+    background: #428bca none repeat scroll 0 0;
+    border: 1px solid #357ebd;
+    border-radius: 4px;
+    color: #fff;
+}

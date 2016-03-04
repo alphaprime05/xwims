@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="fr" ng-app="myApp">
+    <head ng-include="'includes/head.html'"> 
+        
+	    <title>Liste des nouveaux membres - xWims</title>
+        <link href="css/admin.css" rel="stylesheet">
+	
+    </head>
+    
+    <body>
+        <nav class="navigation" ng-include="'includes/nav.html'">
+        </nav>
+        
+        <div id="wrap">
+            <div class="container">
+          
+                <div class="row">
+                    <button class="btn blue-background">Certifier</button>
+                    <button class="btn blue-background">Refuser</button>
+                </div>
+            <div class="row searchZone"  ng-controller="userListCtrl">
+
+                <div class="col-sm-7 searchInputZone">              
+                    <input id="searchInput" class="form-control" aria-describedby="helpBlock" autofocus="autofocus" type="text" name="q"  ng-model="query"/>
+                </div>
+            <table class="table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Utilisateur</th>
+                            <th>Email</th>
+                            <th>Date d'inscription</th>
+                        </tr>
+                    </thead>
+                	<tbody>   
+                       <tr ng-repeat="member in members | filter:query">
+                            <td >
+                                <div class="checkbox">
+                                    <label  for="hist"><input type="checkbox" name="users[]" value="hist" /><i></i></label>
+                                </div>
+                           </td>
+	                       <td >{{ member.lastName }} {{ member.firstName }}</td>
+	                       <td >{{ member.email }}</td>
+	                       <td >13/12/2003 </td>
+                        </tr>                         
+                    </tbody>
+                </table> 
+                
+                </div>
+            <nav>
+              <ul class="pagination">
+                <li>
+                  <a href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li>
+                  <a href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+      
+        </div>
+      </div>
+        
+        <footer id="footer" ng-include="'includes/footer.html'"></footer>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="lib/autocomplete/auto-complete.js"></script>
+        <script type="text/javascript" src="js/angular/controller.js"></script>   
+        
+        
+    </body>
+</html>
+
+

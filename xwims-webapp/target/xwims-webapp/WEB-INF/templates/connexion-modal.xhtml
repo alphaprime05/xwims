@@ -1,0 +1,61 @@
+<!DOCTYPE html  [
+    <!ENTITY nbsp "&#160;">
+    <!ENTITY times "&#215;"> 
+]>
+<ui:composition 
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+	 
+
+<!-- Modal -->
+    <div class="modal fade" id="connexion" tabindex="-1" role="dialog" aria-labelledby="connexionModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" >CONNEXION</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-horizontal">
+      <div class="form-group">
+      
+        <label for="inputEmail3" class="col-sm-offset-2 col-sm-2 control-label">Email</label>
+        <div class="col-sm-5">
+          <input type="email" class="form-control" id="inputEmail3" placeholder="Email" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputPassword3" class="col-sm-offset-1 col-sm-3 control-label">Mot de passe</label>
+        <div class="col-sm-5">
+          <input type="password" class="form-control" id="inputPassword3" placeholder="Mot de passe" />
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-9">
+          <div class="checkbox">
+            <label  for="remember">
+              <input type="checkbox" name="remember" id="remember" value="checkone" /> 
+          <i></i> <span>Se souvenir de moi</span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="col-sm-offset-5 col-sm-9">
+          <button type="submit" class="btn btn-primary" id="connect">Se connecter</button>
+        </div>
+      </div>
+    </form>
+    <p class="col-sm-offset-5 col-sm-9">Pas encore inscrit ? <a href="inscription.html">Cliquez-ici</a></p>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+    
+    
+    
+	
+</ui:composition>

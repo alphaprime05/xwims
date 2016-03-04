@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="dbimport" transaction-type="RESOURCE_LOCAL">
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>entity.AuthorizedDomainName</class>
+		<class>entity.Category</class>
+		<class>entity.CategoryTranslation</class>
+		<class>entity.ExerciseAuthor</class>
+		<class>entity.ExerciseComment</class>
+		<class>entity.ExerciseIsWrong</class>
+		<class>entity.ExercisesCategoryVote</class>
+		<class>entity.ExercisesKeywordsVote</class>
+		<class>entity.ExercisesLevelsVote</class>
+		<class>entity.Keyword</class>
+		<class>entity.KeywordTranslation</class>
+		<class>entity.Level</class>
+		<class>entity.NextCategoryForExercise</class>
+		<class>entity.PreviousCategoryForExercise</class>
+		<class>entity.UserSelectedCategory</class>
+		<class>entity.Worksheet</class>
+		<class>entity.WorksheetExercise</class>
+		<class>entity.User</class>
+		<class>entity.Exercise</class>
+		<class>entity.ExercisesScoreVote</class>
+		<class>entity.Configuration</class>
+		<properties>
+			<property name="hibernate.search.default.directory_provider" value="filesystem" />
+			<property name="hibernate.search.default.indexBase" value="/home/xwims/Documents/lucene/indexes/" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/xwims" />
+			<property name="javax.persistence.jdbc.user" value="xwims" />
+			<property name="javax.persistence.jdbc.password" value="xwims" />
+			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+		</properties>
+	</persistence-unit>
+</persistence>

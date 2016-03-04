@@ -1,0 +1,19 @@
+.btn-menu-admin{
+   background-color: #19535C; 
+    text-align: center;
+    padding:20px;
+    border-radius:3px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+    border: 0px solid #E4E4E4;
+    height:100px;
+}
+
+.btn-menu-admin:hover{
+   background-color: #123c43; 
+}
+
+.btn-menu-admin p{
+   font-size:3rem;
+    color:white;
+    
+}

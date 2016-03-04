@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="fr" ng-app="myApp">
+    <head>
+    <title>Mon profil</title>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="../../favicon.ico" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css' />
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- CSS App -->
+    <!-- Custom styles for this template -->
+    <link href="css/recherche.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/profil.css" rel="stylesheet">
+    </head>
+    
+    <body>
+         
+
+	<nav class="navigation"  ng-controller="ConnectionCtrl">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+			<img src="img/logo1.png" alt="xWims" id="logoNav" width="198px" height="64px" />
+		    </div>
+
+		    <div id="link-nav" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+			    <li><a href="index.html">Accueil</a></li>
+			    <li ><a href="recherche.html">Recherche</a></li>
+			    <li><a href="worksheet.html">Ma feuille d'exercices</a></li>
+			    <li class="active"><a href="profil.html" ng-if="connected" >Mon profil</a></li>
+			    <li><a href="#" data-toggle="modal"  data-target="#connexion" ng-if="!connected">Se connecter</a></li>
+			</ul>
+		    </div>
+		</div>
+        <div ng-include="'includes/modal_connection.html'"></div>
+	</nav>
+
+      <div id="wrap">
+        <div class="container" ng-controller="profileCtrl">
+     
+              
+            <div class="row">
+              <div class="col-sm-offset-1 col-sm-5 ">
+                Nom : {{user.fullname}}<br />
+                Email : {{user.email}}<br />
+                Mes droits : {{user.status}}<br />
+              
+                </div>
+                
+              <div class="col-sm-offset-1 col-sm-5 ">
+                  <button type="button" ng-click="deconnect()" class="btn blue-background">Se déconnecter</button>
+                </div>
+            </div>
+            <h1>Mes feuilles d'exercices</h1>
+            <ul >
+                <li  ng-repeat="worksheet in user.worksheetObjects" >
+                    <div class="row zone ">
+                        <div class="col-sm-10 col-sm-offset-1 zone-header cursor"><span  ng-click="deleteWorksheet(worksheet.id)" alt="supprimer feuille" class=" glyphicon glyphicon-remove cursor pull-right" height="15px" width="15px" ></span>
+                            <span class="glyphicon glyphicon-chevron-down cursor" type="button" aria-hidden="true" aria-expanded="false" data-toggle="collapse" data-target="#calculCollapse{{ $index + 1 }}"></span> {{worksheet.title}}
+                        </div>
+                        <div class="col-sm-10 zone-body">
+                            <div class="col-sm-7 worksheetDescription">
+                                
+                                <div class="collapse" id="calculCollapse{{ $index + 1 }}">
+                              <div ng-repeat="ex in worksheet.exercices_param">
+                                  <span class="titleEx"><a ng-href="{{urlWebappGlobal}}/exercice.html?id={{ex.id_exercise}}">Nom de l'exercice : {{ex.wims_exercise_name}}</a></span><br />
+                                  <span>Identifiant Wims : {{ex.wims_identifier}}</span><br />
+                                  <img src="img/view.png" alt="5" height="20px" width="20px" />{{ex.popularity}}&nbsp;&nbsp;&nbsp;
+                                <span ng-repeat="hat in ex.hats track by $index">
+                                    <img src="img/chapeau{{hat}}.png" alt="5" height="25px" width="20px"/>
+                                    </span>
+                                  <hr />
+                                </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+      </div>
+
+
+          
+        </div>
+        
+    <footer id="footer" ng-include="'includes/footer.html'"></footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular/controllerProfil.js"></script>
+    <script type="text/javascript" src="js/angular/controllerConnection.js"></script>
+        
+    </body>
+</html>
+

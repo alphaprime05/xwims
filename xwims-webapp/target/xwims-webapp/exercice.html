@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="fr" ng-app="myApp">
+
+<head>
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link rel="icon" href="../../favicon.ico" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>xWims - </title>
+    <!-- Bootstrap core CSS -->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:300,400' rel='stylesheet' type='text/css' />
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css' />
+    <!-- Bootstrap core CSS -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!--link href="http://netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/checkbox.css" rel="stylesheet" -->
+
+
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <!-- CSS App -->
+    <!-- Custom styles for this template -->
+    <link href="css/recherche.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <nav class="navigation"  ng-controller="ConnectionCtrl">
+		<div class="container-fluid">
+		    <div class="navbar-header">
+			<img src="img/logo1.png" alt="xWims" id="logoNav" width="198px" height="64px" />
+		    </div>
+
+		    <div id="link-nav" class="collapse navbar-collapse">
+			<ul class="nav navbar-nav">
+			    <li><a href="index.html">Accueil</a></li>
+			    <li class="active"><a href="recherche.html">Recherche</a></li>
+			    <li><a href="worksheet.html">Ma feuille d'exercices</a></li>
+			    <li><a href="profil.html" ng-if="connected">Mon profil</a></li>
+			    <li ><a href="#" data-toggle="modal"  data-target="#connexion" ng-if="!connected">Se connecter</a></li>
+			</ul>
+		    </div>
+		</div>
+        <div ng-include="'includes/modal_connection.html'"></div>
+	</nav>
+
+
+    <div id="wrap">
+        <div class="container" ng-controller="ExerciseCtrl">
+
+            <div class="row ">
+                <div class="col-sm-12 ">
+                    <h1>{{exercise.wimsTitle}}     
+                  <!--img src="img/erreur.png" alt="erreur" height="40px" width="40px"/-->
+                    <a href=""><img ng-src="img/addPaper.png" ng-click="togglePaper(exercise,$event)" alt="Ajouter" height="50px" width="50px" class="addPaperButton" /></a>
+                    </h1>
+
+
+                </div>
+            </div>
+
+
+            <div class="row zone">
+                <div class="col-sm-12 zone-body wording">
+                    <iframe src="{{exercise.viewUrl | trustAsResourceUrl}}" height="400px" width="1000px"></iframe>
+                </div>
+            </div>
+            <div class="row scoreAndPop">
+                <div class="col-sm-4 " ng-show="!hasVoted">
+               {{min}}<input ng-model="value" min="{{min}}" max="{{max}}" type="range"/>{{max}}
+                </div>
+                <div class="col-sm-1 " ng-show="!hasVoted">
+                <button type="button" ng-click="voteScore(value)" >Noter</button>
+                </div>
+                <div class="col-sm-3 " ng-show="hasVoted">
+                    <span ng-repeat="hat in exercise.hats track by $index">
+                        <img src="img/chapeau{{hat}}.png" alt="5" height="40px" width="40px"/>
+                    </span>
+                </div>
+                <div class="col-sm-3 col-sm-offset-1">
+                    <img src="img/view.png" alt="5" height="30px" width="30px" />{{exercise.popularity}}
+                </div>
+
+            </div>
+            
+            <div class="row zone" >
+                <div class="col-sm-3  zone-body ">
+                    Catégories à faire avant
+                    <span  ng-repeat="prev in exercise.previousCategories">
+                        <button type="button" class="btn blue-background" data-toggle="tooltip" data-placement="bottom" title="Voter" id="prev.id" ng-click="addVote(prev.id)"><span class="glyphicon glyphicon-plus" ng-if="!prev.hasUserVoted"></span>{{prev.xwims_translation}}<span class="badge">{{prev.nbVote}}</span></button>
+                    
+                    </span>
+                    <div ng-controller="prevCategoryModalCtrl">
+                    <script type="text/ng-template" id="prevCategoryModalContent.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Ajoutez une catégorie précédente à l'exercice</h3>
+                            </div>
+                            
+                            <div class="modal-body container-fluid typeahead-demo" >
+                                Choississez la catégorie précédente de l'exercice que vous souhaitez voter
+                                <div class="col-sm-4 keywords" ng-repeat="cat in categories">
+                                    <button type="button" ng-click="deepTree(cat)" class="btn blue-background" value="{{cat.id}}"> {{cat.xwims_translation}}</button>
+                                    <br/>
+                                </div>
+                                <button type="button" ng-click="backTree()" class="btn blue-background"><span class="glyphicon glyphicon-arrow-left"></span></button>
+
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">Voter</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">Annuler</button>
+                            </div>
+                        </script>
+                        <button type="button" class="btn blue-background" ng-click="openPrevCategoryModal()" ng-if="isUserCertified">+</button>
+                        </div>
+                </div>
+                
+                
+                <div class="col-sm-3 col-sm-offset-1 zone-body " >
+                    <span  ng-repeat="eq in exercise.equivalents">
+                        <button type="button" class="btn blue-background" data-placement="bottom" ng-click="changeEquivalent(eq.id)" id="eq.id"  >{{eq.wimsTitle}}</button><br />
+                    
+                    </span>
+                </div>
+                
+                
+                <div class="col-sm-3  col-sm-offset-1 zone-body " >
+                    Catégories à faire après
+                    <span  ng-repeat="next in exercise.nextCategories">
+                        <button type="button" class="btn blue-background" data-toggle="tooltip" data-placement="bottom" title="Voter" id="next.id" ng-click="addVote(next.id)"><span class="glyphicon glyphicon-plus" ng-if="!next.hasUserVoted"></span>{{next.xwims_translation}}<span class="badge">{{next.nbVote}}</span></button>
+                    
+                    </span>
+                    <div ng-controller="nextCategoryModalCtrl">
+                    <script type="text/ng-template" id="nextCategoryModalContent.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Ajoutez une catégorie suivante à l'exercice</h3>
+                            </div>
+                            
+                            <div class="modal-body container-fluid typeahead-demo" >
+                                Choississez la catégorie suivante de l'exercice que vous souhaitez voter
+                                <div class="col-sm-4 keywords" ng-repeat="cat in categories">
+                                    <button type="button" ng-click="deepTree(cat)" class="btn blue-background" value="{{cat.id}}"> {{cat.xwims_translation}}</button>
+                                    <br/>
+                                </div>
+                                <button type="button" ng-click="backTree()" class="btn blue-background"><span class="glyphicon glyphicon-arrow-left"></span></button>
+
+                            </div>
+
+
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok()">Voter</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">Annuler</button>
+                            </div>
+                        </script>
+                        <button type="button" class="btn blue-background" ng-click="openNextCategoryModal()" ng-if="isUserCertified">+</button>
+                        </div>
+                </div>
+                    
+                    
+            </div>
+           
+
+            <div class="row ">
+                <div class="col-sm-12 zone-body" >
+                    <div ng-controller="ModalDemoCtrl">
+                        Catégorie : 
+                        <span ng-repeat="cat in exercise.categories" ng-if="isUserCertified">
+                            <button type="button" class="btn blue-background" data-toggle="tooltip" data-placement="bottom" title="Voter" id="cat.id" ng-click="addVote(cat.xwims_translation)"><span class="glyphicon glyphicon-plus" ng-if="!cat.hasUserVoted"></span>{{cat.xwims_translation}}<span class="badge">{{cat.nbVote}}</span></button>
+                        </span>
+                        <span ng-repeat="cat in exercise.categories" ng-if="!isUserCertified">
+                            <button type="button" class="btn blue-background" data-toggle="tooltip" data-placement="bottom" title="Voter" id="cat.id" >{{cat.xwims_translation}}<span class="badge">{{cat.nbVote}}</span></button>
+                        </span>
+                        
+                        <script type="text/ng-template" id="categoryModalContent.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Ajoutez une catégorie à l'exercice</h3>
+                            </div>
+                            <div class="modal-body container-fluid typeahead-demo" ng-show="stepAddCategory == 1">
+
+                                <input type="text" ng-model="asyncSelected" ng-model-options="modelOptions" uib-typeahead="cat for cat in getCategories($viewValue) " typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                <div ng-show="noResults">
+                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                </div>
+
+                            </div>
+
+                            <div class="modal-body container-fluid typeahead-demo" ng-show="stepAddCategory == 2">
+                                Traduction
+                                <input type="text" ng-model="asyncSelectedTrad" ng-model-options="modelOptions" uib-typeahead="cat for cat in getCategoriesTrad($viewValue) " typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                <div ng-show="noResults">
+                                    <i class="glyphicon glyphicon-remove"></i> No Results Found
+                                </div>
+
+                            </div>
+                            <div class="modal-body container-fluid typeahead-demo" ng-show="stepAddCategory == 3">
+                                Votre catégorie n'existe pas encore, merci choisir le niveau où la placer.
+                                <div class="col-sm-4 keywords" ng-repeat="cat in categories">
+                                    <button type="button" ng-click="deepTree(cat)" class="btn blue-background" value="{{cat.id}}"> {{cat.xwims_translation}}</button>
+                                    <br/>
+                                </div>
+                                <button type="button" ng-click="backTree()" class="btn blue-background"><span class="glyphicon glyphicon-arrow-left"></span></button>
+
+                            </div>
+
+                            <div class="modal-body container-fluid typeahead-demo" ng-show="categoryAdded">
+                                Votre catégorie a été ajouté !
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok(stepAddCategory)">OK</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </script>
+
+                        <button type="button" class="btn blue-background" ng-click="openCategoryModal()" ng-if="isUserCertified">+</button>
+                    </div>
+
+                        
+                    <div ng-controller="addKeywordCtrl">
+                        Mots-clés :
+                        <span ng-repeat="keyword in exercise.keywords" ng-if="isUserCertified">
+                        
+                            <button type="button" class="btn btn-level" data-toggle="tooltip" data-placement="bottom" title="Voter" id="keyword.id" ng-click="addVote(keyword.xwims_translation)"><span class="glyphicon glyphicon-plus" ng-if="!keyword.hasUserVoted"></span>{{keyword.xwims_translation}}<span class="badge">{{keyword.nbVote}}</span></button>
+
+                        </span>
+                        <span ng-repeat="keyword in exercise.keywords" ng-if="!isUserCertified">
+                        
+                            <button type="button" class="btn btn-level" data-toggle="tooltip" data-placement="bottom" title="Voter" id="keyword.id" >{{keyword.xwims_translation}}<span class="badge">{{keyword.nbVote}}</span></button>
+
+                        </span>
+                        <script type="text/ng-template" id="keywordModalContent.html">
+                            <div class="modal-header">
+                                <h3 class="modal-title">Ajoutez un mot-clé à l'exercice</h3>
+                            </div>
+                            <div class="modal-body container-fluid typeahead-demo" ng-show="stepAddKeyword == 1">
+
+                                <input type="text" ng-model="asyncSelected" ng-model-options="modelOptions" uib-typeahead="cat for cat in getCategories($viewValue) " typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                <div ng-show="noResults">
+                                    <i class="glyphicon glyphicon-remove"></i> Aucun résultat
+                                </div>
+
+                            </div>
+
+                            <div class="modal-body container-fluid typeahead-demo" ng-show="stepAddKeyword == 2">
+                                Traduction
+                                <input type="text" ng-model="asyncSelectedTrad" ng-model-options="modelOptions" uib-typeahead="cat for cat in getCategoriesTrad($viewValue) " typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+                                <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                                <div ng-show="noResults">
+                                    <i class="glyphicon glyphicon-remove"></i> Aucun résultat
+                                </div>
+
+                            </div>
+                            <div class="modal-body container-fluid typeahead-demo" ng-show="stepAddKeyword == 3">
+                                Votre mot-clé n'existe pas encore, souhaitez-vous le créer ?
+                                
+                                {{asyncSelected}} + {{asyncSelectedTrad}}
+
+                            </div>
+
+                            <div class="modal-body container-fluid typeahead-demo" ng-show="categoryAdded">
+                                Votre catégorie a été ajouté !
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-click="ok(stepAddKeyword)">OK</button>
+                                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                            </div>
+                        </script>
+                        
+                        <button type="button" class="btn btn-level" data-toggle="tooltip" data-placement="right" title="Ajouter un mot-clé" ng-if="isUserCertified" ng-click="openKeywordModal()">+</button>
+                        <br/>
+                    </div>
+                </div>
+
+
+            
+
+
+            </div>
+
+            
+
+        </div>
+    </div>
+
+
+
+
+    <div ng-include="'includes/modal_connection.html'"></div>
+    <footer id="footer" ng-include="'includes/footer.html'"></footer>
+
+    <script src="js/common.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-cookies.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/ngStorage/0.3.6/ngStorage.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="lib/ui-bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/angular/controllerExercise.js"></script>
+    <script type="text/javascript" src="js/angular/controllerCategoryVote.js"></script>
+    <script type="text/javascript" src="js/angular/controllerKeywordVote.js"></script>
+    <script type="text/javascript" src="js/angular/controllerPrevCategoryVote.js"></script>
+    <script type="text/javascript" src="js/angular/controllerNextCategoryVote.js"></script>
+    <script type="text/javascript" src="js/angular/controllerConnection.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $('[data-toggle="tooltip"]').tooltip();
+        })
+
+    </script>
+
+</body>
+
+</html>
